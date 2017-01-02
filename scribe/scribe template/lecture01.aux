@@ -1,0 +1,65 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{Definition of Natural Language Processing (NLP)}{1}{section*.1}}
+\newlabel{sec:what-is-nlp}{{}{1}{Definition of Natural Language Processing (NLP)}{section*.1}{}}
+\@writefile{toc}{\contentsline {section}{Applications}{1}{section*.2}}
+\newlabel{sec:nlp-applications}{{}{1}{Applications}{section*.2}{}}
+\@writefile{toc}{\contentsline {section}{Challenges}{1}{section*.3}}
+\newlabel{sec:nlp-challenges}{{}{1}{Challenges}{section*.3}{}}
+\@writefile{toc}{\contentsline {section}{History}{1}{section*.4}}
+\newlabel{sec:nlp-history}{{}{1}{History}{section*.4}{}}
+\@writefile{toc}{\contentsline {section}{Applying Machine Learning Methods}{1}{section*.5}}
+\newlabel{sec:applying-machine-learning-methods}{{}{1}{Applying Machine Learning Methods}{section*.5}{}}
+\@writefile{toc}{\contentsline {subsection}{The Determiner Placement Task}{1}{subsection*.6}}
+\newlabel{sec:determiner-placement-task}{{}{1}{The Determiner Placement Task}{subsection*.6}{}}
+\@writefile{toc}{\contentsline {subsection}{Determiner Placement as a Supervised Classification Task}{2}{subsection*.7}}
+\newlabel{sec:determiner-prediction-as-classification}{{}{2}{Determiner Placement as a Supervised Classification Task}{subsection*.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {Feature extraction} is the process of converting a text to a feature vector, before feeding it to a classifier. If there are $n$ binary features, then the feature vector will be of dimension $n$.}}{2}{Item.5}}
+\newlabel{fig:feature-extraction}{{1}{2}{Determiner Placement as a Supervised Classification Task}{Item.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Learning the \textbf  {decision boundary} based on the feature vectors and weight vectors. In this example (in simplified two-dimensional space), there are two positive points (with $+$ labels), and two negative points (with $-$ labels). The decision boundary correctly separates all of the training points.}}{3}{Item.7}}
+\newlabel{fig:linear-separator-learning}{{2}{3}{Determiner Placement as a Supervised Classification Task}{Item.7}{}}
+\newpmemlabel{^_1}{3}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Example of feature values and labels given to the classifier during the training phase. This table results from data collection, labeling and feature extraction. The feature values for the unigram feature present in this table are much smaller than it is in reality: unigram feature values are one-hot vectors of dimension $|V|$, where $V$ is the dictionary.}}{3}{Item.7}}
+\newlabel{tab:samples-for-classifiers}{{1}{3}{Determiner Placement as a Supervised Classification Task}{Item.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Extracting an unigram feature is the process of converting a word to a one-hot vector, which will be used as a feature.}}{3}{Item.7}}
+\newlabel{fig:feature-extraction-unigram}{{3}{3}{Determiner Placement as a Supervised Classification Task}{Item.7}{}}
+\@writefile{toc}{\contentsline {subsection}{Limitations of Traditional Machine Learning Approaches}{4}{subsection*.8}}
+\newlabel{sec:ml-limitations}{{}{4}{Limitations of Traditional Machine Learning Approaches}{subsection*.8}{}}
+\newpmemlabel{^_2}{4}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces In this graph, the red line indicates the portion of unigrams (single words) in the unseen tests that has already been seen in training. The first 1000 training sentences contain over 80\% of unigrams, and the first 10000 about 90\% of them. The blue line in the graph indicates the portion of bigrams (pairs of words) in the unseen samples that has already been seen in the training samples: this number is a lot lower than that for unigrams. Thus, if we consider bigrams for classification, it becomes difficult to be able to accurately classify unseen examples when the classifier has not seen the majority of bigrams during the training phase.}}{4}{subsection*.8}}
+\newlabel{fig:sparsity}{{4}{4}{Limitations of Traditional Machine Learning Approaches}{subsection*.8}{}}
+\newpmemlabel{^_3}{4}
+\newpmemlabel{^_4}{4}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces This graph shows the impact of sparsity on the accuracy of parsers for different languages. Japanese and English have the highest accuracies, and a good predictor of the parser accuracy is the average frequency of each unique word. This means that the parser has a much greater accuracy when it can be trained on larger subsets of the words that will appear in the test set.}}{5}{subsection*.8}}
+\newlabel{fig:sparsity2}{{5}{5}{Limitations of Traditional Machine Learning Approaches}{subsection*.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Selecting feature representation. Traditionally, features of compositional objects are manually-selected concatenations of atomic features.}}{5}{subsection*.8}}
+\newlabel{fig:feature-engineering}{{6}{5}{Limitations of Traditional Machine Learning Approaches}{subsection*.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The words ``pear'' and ``apple'' are mapped from one-hot vectors to continuous, dense vectors of much lower dimension, where they are located close to each other.}}{6}{subsection*.8}}
+\newlabel{fig:embeddings1}{{7}{6}{Limitations of Traditional Machine Learning Approaches}{subsection*.8}{}}
+\@writefile{toc}{\contentsline {subsection}{Word Embeddings}{6}{subsection*.9}}
+\newlabel{sec:word-embeddings}{{}{6}{Word Embeddings}{subsection*.9}{}}
+\newpmemlabel{^_5}{6}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces t-SNE visualization of word embeddings (t-SNE stands for t-Distributed Stochastic Neighbor Embedding). This plot illustrates a projection of embedded vectors into 2-D space. Semantically close words such as ``school'' and ``college'' are mapped closely to one another in the word embedding space, whereas they would appear unrelated when encoded as one-hot vectors. Source: \url  {http://nlp.yvespeirsman.be}}}{6}{subsection*.9}}
+\newlabel{fig:embeddings2}{{8}{6}{Word Embeddings}{subsection*.9}{}}
+\newpmemlabel{^_6}{6}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Linear substructures in word embeddings. In this example, if we take the embedding corresponding to the CEO of one company, subtract that company, and add another company, we will arrive at the CEO of the other company. Source: \url  {http://nlp.stanford.edu/projects/glove}}}{7}{subsection*.9}}
+\newlabel{fig:word-embeddings-linear-substructures}{{9}{7}{Word Embeddings}{subsection*.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Three strategies amongst others to combine word embeddings.}}{7}{subsection*.9}}
+\newlabel{fig:learning-feature-representations}{{10}{7}{Word Embeddings}{subsection*.9}{}}
+\ttl@finishall

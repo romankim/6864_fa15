@@ -1,0 +1,283 @@
+\documentclass[10pt,letter]{article}
+	% basic article document class
+	% use percent signs to make comments to yourself -- they will not show up.
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+	% packages that allow mathematical formatting
+
+\usepackage{enumerate}
+	% package that specifies enumerate tags
+	
+\usepackage{bm}
+
+\usepackage{graphicx}
+	% package that allows you to include graphics
+
+\usepackage{setspace}
+	% package that allows you to change spacing
+
+\onehalfspacing
+	% text become 1.5 spaced
+
+\usepackage{fullpage}
+	% package that specifies normal margins
+
+\newcommand{\indep}{\rotatebox[origin=c]{90}{$\models$}}
+
+\DeclareMathOperator*{\argmin}{arg\!\min}
+\DeclareMathOperator*{\argmax}{arg\!\max}
+	
+\begin{document}
+	% line of code telling latex that your document is beginning
+
+\title{6.864 Problem Set \#2}
+
+\author{Dongyoung Kim}
+
+\date{October 12, 2015}
+	% Note: when you omit this command, the current dateis automatically included
+ 
+\maketitle 
+	% tells latex to follow your header (e.g., title, author) commands.
+
+\section*{Notation}
+Throughout this pset, I will use the notation $x^{(1:n)}$ to denote a list of $\{ x_1, x_2, ..., x_n \}$
+
+\section*{Question 1}
+
+\paragraph*{1.1}
+dimensionality: $\theta = N^2 + (N-1)|\Sigma|$
+
+
+\paragraph*{1.2}
+\begin{align*}
+P &= p(y_1|'START')p('the'|y_1=1)p(y_2=2|y_1=1)p("dog"|y_2=2)p(y_3=1|y_2=2) \\
+&\times p("the"|y_3=1)p('END'|y_3=1) \\
+&= 0
+\end{align*}
+The last equality comes from the fact that $p(y_3=1|y_2=2) = 0$
+
+\section*{Question 2}
+
+\paragraph*{2.1}
+$|\mathcal{T}|^n$
+
+\paragraph*{2.2}
+\begin{align*}
+&\pi(0,*) = 1 \\
+&\pi(0,v) = 0  \quad\text{for all other values of $v$}
+\end{align*}
+
+
+\paragraph*{2.3}
+
+We will prove using induction.
+
+
+Let us consider recursive formula,
+\begin{align}
+\pi(k,v) = \max_{u\in\mathcal{T}}\pi(k-1,u)a_{u,v}b_v(x_k)
+\end{align}
+
+From 2.2, we know,
+
+\begin{align*} 
+\pi(0,v) = \left\{ 
+\begin{array}{l l}
+1 & \quad \text{if $v=*$}\\
+0 & \quad \text{otherwise}
+\end{array} \right.
+\end{align*}
+
+\begin{itemize}
+	\item Base case for $k=1$ :
+	
+	Given by base case,
+	
+	\begin{align*}
+	\pi(1,v) &= \max_{u\in\mathcal{T}}\, \pi(0,u)a_{u,v}b_v(x_1) \\
+	&= \pi(0,*)a_{*,v}b_v(x_1) \\
+	&= 1\cdot a_{*,v} \cdot b_v(x_1) \\
+	&= r(y_1=v)
+	\end{align*}
+	Since $y_1$ is fixed, (1) satisfies trivially
+	
+	\item Prove inductive step $k$ assuming step $k-1$ is true :
+	
+	
+	Assume $\pi(k-1,u) = \max\limits_{ y^{(1:k-1)}\in S(k-1,u) } r( y^{(1:k-1)})   \quad \forall u$
+	
+	Then, 
+	
+	\begin{align*}
+	\max\limits_{y^{(1:k)}\in S(k,v)}r(y^{(1:k)}) 
+	&=\max\limits_{y^{(1:k)}\in S(k,v)}r(y^{(1:k-1)})a_{y_{k-1},y_k}b_{y_k}(x_k) \\
+	&= \max_{y^{(1:k-1)}}r( y^{(1:k-1)} )a_{y_{k-1},v}b_{v}(x_k) \\
+	&= \max\limits_{u\in\mathcal{T}, y^{(1:k-1)}\in S(k-1,v)} r(y^{(1:k-1)})a_{u_v}b_v{x_k} \\
+	&= \max\limits_{u\in\mathcal{T}}\, \pi(k-1,u)a_{u,v}b_v(x_k) 
+	\end{align*}
+
+	Which is precisely our recursion formula in (1)
+	
+\end{itemize} 
+
+
+\paragraph*{2.4}
+We are essentially filling out a table of size $n|\mathcal{T}|$, and each step takes $O(|\mathcal{T}|)$ cost. 
+
+Total cost is therefore $O(n|\mathcal{T}|^2)$
+
+
+
+
+
+
+
+
+
+\section*{Question 3}
+
+\paragraph*{3.1}
+
+Consider
+\begin{align*}
+p(y|x^i) &= \dfrac{p(x^i,y)}{ \sum_{y'} p(x^i, y') }
+\end{align*}
+Where $p(x^i,y)$ is the likelihood of the tag sequence $y$ associated with a output sequence $x^i$
+
+The fractional count $\overline{count}$ is simply
+
+$ \overline{count}(u\rightarrow v) = \sum_{i} \sum_{y} p(x^i,y) count(x^i, y, u\rightarrow v) $
+
+\paragraph*{3.2}
+
+$a_{u,v} = \dfrac{ \overline{count}(u\rightarrow v) }{ \sum_{v'} \overline{count}(u\rightarrow v') }$
+
+\paragraph*{3.3}
+\begin{align*}
+\sum_{p} \alpha_p(j) \beta_p(j) &= \sum_{p} p(x^{(1:j-1)}, y_j = p|\theta ) p(x^{(j:n)}| y_j = p, \theta  ) \\
+&= \sum_{p} p(  x^{(1:n)} , y_j=p|\theta ) \\
+&= p(x^{(1:n)} | \theta)
+\end{align*}
+
+
+\paragraph*{3.4}
+\begin{align*}
+p(y_i=p | x^{(1:n)}, \theta) &= \dfrac{p(y_i=p, x^{(1:n)}|\theta)}{p(x^{(1:n)}|\theta)}
+\end{align*}
+
+We have $ p(x^{(1:n)} | \theta) = \sum_{p} \alpha_p(j) \beta_p(j) $, so we only have to prove the numerator is indeed as given, which can be verified by applying chain rule
+
+\begin{align*}
+\alpha_p(i)\beta_p(i) &= p( x^{(1:j-1)} , y_j = p | \theta) p( x^{(j:n)} |y_j=p, \theta ) \\
+&= p(y_j=p , x^{(1:n)}| \theta )
+\end{align*}
+
+
+
+
+
+\section*{Question 4}
+
+\paragraph*{4.1}
+Among unigram, bigram, and trigram, the model with the highest likelihood on the test data will dominate over others. Since trigram has the most overfitting effect, $\lambda_3 = 1$ and $\lambda_2 = \lambda_1 = 0$
+
+\paragraph*{4.2}
+\subparagraph{(a)}
+
+Define
+\begin{align*} 
+p( \lambda, w_t, w_{t-1}, w_{t-2} ) = \left\{ 
+\begin{array}{l l}
+\lambda_1 p_{ML}(w_t) & \quad \text{if $\lambda \text{ is an instance of } \lambda_1$}\\
+\lambda_2 p_{ML}(w_t| w_{t-1}) & \quad \text{if $\lambda \text{ is an instance of }  \lambda_2$}\\
+\lambda_3 p_{ML}(w_t| w_{t-1}, w_{t-2}) & \quad \text{if $\lambda \text{ is an instance of } \lambda_3$}
+\end{array} \right.
+\end{align*}
+
+Then, 
+
+\begin{align*}
+\hat{n}(\lambda) = \sum_{t} \dfrac{ p( \lambda, w_t, w_{t-1}, w_{t-2} ) }{ \sum_{\lambda '} p( \lambda ', w_t, w_{t-1}, w_{t-2} ) }
+\end{align*}
+
+\subparagraph{(b)}
+\begin{align*}
+\lambda^{(k+1)}_y = \dfrac{ \hat{n}(\lambda_y^{(k)}) }{ \sum_{y'} \hat{n}(\lambda_{y'}^{(k)})           }
+\end{align*}
+
+\paragraph*{4.3}
+$\lambda_2^{(t)}$ will be zero for all iteration $t$. That is because fractional count $\hat{n}(\lambda_2)$ is always zero. The EM will find a suboptimal solution over $\lambda_1$ and $\lambda_3$ where $\lambda_2$ is fixed as zero.
+
+
+
+
+
+
+\section*{Question 5}
+
+\paragraph*{5.1}
+\begin{align*}
+\hat{n}_t(z) &= \sum_{i=1}^{N_t} \, p(z|w_i,t) \\
+\hat{n}(w,z) &= \sum_{t\in[1,n]} \sum_{i=1}^{N_t} \delta(w_i-w) p(z|w_i,t)
+\end{align*}
+
+\paragraph*{5.2}
+\begin{align*}
+\theta_{z|t} &= \dfrac{\hat{n}_t(z)}{\sum_{z'} \hat{n}_t(z)}\\
+\theta_{w|z} &= \dfrac{\hat{n}(w,z)}{\sum_{w'} \hat{n}(w',z)}
+\end{align*}
+
+\paragraph*{5.2}
+\begin{enumerate}[(a)]
+	\item
+	Done
+	\item
+	We can look at the goal function of the EM Algorithm (the likelihood) and optimize the number of topics. Also, if the word distributions for each topic $\theta_{w|z}$ is far away from each other (KL divergence could be a good criteria), it would be a good sign that each topic represents different spectra of words.
+	\item
+
+	Politics: President, administration, democrats
+
+	War1: Military, special, forces,
+	
+	War2: War, forces, Afghanistan, American
+
+	Economy 1: Economy, company, industry
+	
+	Economy 2: Business, season, power
+	
+	Journalism 1: News, stories, New, York, Times, day
+	
+	Journalism 2: Journal, news, paint, Washington, editorial
+	
+	NYT: New, York, Times, people, Tuesday
+	
+	Finance: Business, year, city, bank
+	
+	Random: clown, fright, crouch, cornerbacks
+	
+	
+	
+
+	
+	
+
+	The topics are not unique, i.e., what seems like a similar topic to the human mind could be classified under multiple different labels. Furthermore, many words are seen with high probability across multiple topic labels. 
+	\item
+	EM algorithm may converge at a sub-optimal local maxima depending on the starting values of the parameter. To work around this issue, randomizing the starting state is the key. If we assign a uniform value to the parameters, the algorithm will converge at the same point for any given test runs. 
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
